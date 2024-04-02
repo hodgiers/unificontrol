@@ -93,7 +93,7 @@ class UnifiClient(metaclass=MetaNameFixer):
         request = requests.Request(method, url, json=rest_dict)
         ses = self._session
 
-        resp = ses.send(ses.prepare_request(request))
+        resp = ses.send(ses.prepare_request(request), verify=False)
 
         # If we fail with unauthorised and need login then retry just once
         if resp.status_code == 401 and need_login:
